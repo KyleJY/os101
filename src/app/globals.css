@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5eee4;
+  --foreground: #3b2416;
+  --panel: #fffaf4;
+  --panel-soft: #f2e7d8;
+  --muted: #7f614b;
+  --border: #d9c1a8;
+  --accent: #8d5a3b;
+  --accent-foreground: #fff8f0;
+  --timeline-block: #a4633f;
+  --idle: #d8c1ad;
+  --danger: #b42318;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-bree-serif);
+  --font-sans: var(--font-nunito);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[data-theme="dark"] {
+  --background: #1f1712;
+  --foreground: #f6e6d6;
+  --panel: #2a211b;
+  --panel-soft: #352a22;
+  --muted: #c6ab94;
+  --border: #594536;
+  --accent: #d18f63;
+  --accent-foreground: #2d1a10;
+  --timeline-block: #bf7c50;
+  --idle: #4a3a2f;
+  --danger: #ff9f95;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), sans-serif;
+  background-image:
+    radial-gradient(circle at 12% 18%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 45%),
+    radial-gradient(circle at 88% 82%, color-mix(in oklab, var(--muted) 25%, transparent), transparent 42%),
+    linear-gradient(145deg, color-mix(in oklab, var(--background) 90%, #ffffff), var(--background));
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.font-display {
+  font-family: var(--font-bree-serif), serif;
+}
+
+.coffee-glow {
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+  width: 22rem;
+  height: 22rem;
+  opacity: 0.28;
+  filter: blur(70px);
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--accent) 48%, transparent);
+}
+
+.coffee-glow-top {
+  top: -8rem;
+  right: -8rem;
+}
+
+.coffee-glow-bottom {
+  bottom: -10rem;
+  left: -8rem;
+}
+
+.timeline-reveal {
+  animation: timeline-fade-in 360ms ease-out;
+}
+
+.timeline-block-reveal {
+  animation: timeline-block-in 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes timeline-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes timeline-block-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
