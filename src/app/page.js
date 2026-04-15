@@ -153,7 +153,7 @@ export default function Home() {
         </button>
       </header>
 
-      <main className="relative z-10 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+      <main className="relative z-10 flex flex-col gap-6">
         <ProcessInputsCard
           processes={processes}
           error={error}
@@ -170,9 +170,9 @@ export default function Home() {
           algorithm={algorithm}
           onAlgorithmChange={handleAlgorithmChange}
         />
-      </main>
 
-      <ResultsCard results={results} algorithm={algorithm} />
+        <ResultsCard results={results} algorithm={algorithm} />
+      </main>
     </div>
   );
 }
